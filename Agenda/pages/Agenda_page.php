@@ -34,11 +34,11 @@ print_summary_submenu();
 <input type="hidden" name="t_user_id" id="t_user_id" value="<?php echo $t_user_id; ?>" />
 <input type="hidden" name="t_user_access_level" id="t_user_access_level" value="<?php echo $t_user_access_level; ?>" />
 
-<div id='loading' style='display:none'>loading...</div>
+<div id='loading' style='display:none'><?php echo plugin_lang_get('loading_text');?>...</div>
 <div id='calendar'></div>
 
 <div id="event_details">
-<p class="p_event_details_header"><a id="event_details_close" href="#event_details" name="event_details">Fermer le détail </a></p>
+<p class="p_event_details_header"><a id="event_details_close" href="#event_details" name="event_details"><?php echo plugin_lang_get('close_details');?></a></p>
 	<div id="event_details_content">
 	</div>
 </div>

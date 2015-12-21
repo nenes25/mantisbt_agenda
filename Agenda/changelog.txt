@@ -1,17 +1,20 @@
 Plugin MantisAgenda
 
 2011-08-18 : V 0.1
- - Affichage du temps passÈ sur les bugs dans un calendrier
+ - Affichage du temps pass√© sur les bugs dans un calendrier
 2013-04-28 : V 0.2
- - Ajout de la gestion des dates d'ÈchÈances
- - Mise ‡ jour de la version du fullCalendar ( 1.5.1 ‡ 1.6.1) 
- - RÈorganisation de l'architecture des dossiers
- - Modifications des options d'affichage en fonction du profil de visualisation et du projet selectionnÈ
+ - Ajout de la gestion des dates d'√©ch√©ances
+ - Mise √† jour de la version du fullCalendar ( 1.5.1 √† 1.6.1) 
+ - R√©organisation de l'architecture des dossiers
+ - Modifications des options d'affichage en fonction du profil de visualisation et du projet selectionn√©
    - Administrateur :
-     x) visualisation de toutes les dates d'ÈchÈances
-	 x) visualisation de toutes les actions des dÈveloppeurs ( PossibilitÈ de filtrer par dÈveloppeur )
-  - DÈveloppeur :
-     x) visualisation des dates d'ÈchÈances des bugs assignÈs
+     x) visualisation de toutes les dates d'√©ch√©ances
+	 x) visualisation de toutes les actions des d√©veloppeurs ( Possibilit√© de filtrer par d√©veloppeur )
+  - D√©veloppeur :
+     x) visualisation des dates d'√©ch√©ances des bugs assign√©s
      x) visualisation de ses actions
 2013-05-08 : V 0.2.1
-  - Inclusion des constants mantis dans le fichier json-events pour corriger des variables non dÈfinies.	 
+  - Inclusion des constants mantis dans le fichier json-events pour corriger des variables non d√©finies.	
+2015-12-21 : V 0.2.2 :
+ - Correction affichage des bugs, merci √† emmanuel1979
+ - Suppressions des derni√®res traductions en dur 

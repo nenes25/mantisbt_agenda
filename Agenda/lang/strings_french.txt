@@ -1,2 +1,4 @@
 <?php
 $s_see_agenda = "Voir agenda";
+$s_loading_text = "Chargement en cours";
+$s_close_detail = "Fermer le détail";

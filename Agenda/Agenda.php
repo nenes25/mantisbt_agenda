@@ -11,7 +11,7 @@
 	  
 	 - Basé sur le script de Calendrier "FullCalendar" disponible à l'adresse suivante : http://arshaw.com/fullcalendar/download/
 
-	 Version 0.2.1
+	 Version 0.2.2
 	 © Hennes Hervé - 2013
 */
 
@@ -20,7 +20,7 @@ class AgendaPlugin extends MantisPlugin {
 	function register() {
 		$this->name        = 'AgendaPlugin';
 		$this->description = 'Affichage du temps passé sur les bugs dans un calendrier';
-		$this->version     = '0.2.1';
+		$this->version     = '0.2.2';
 		$this->requires    = array('MantisCore'       => '1.2.0',);
 		$this->author      = 'Hennes Hervé';
 		$this->url         = 'http://www.h-hennes.fr';
