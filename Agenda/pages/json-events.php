@@ -83,21 +83,31 @@
 			
 			$bug_link = dirname($_SERVER['REQUEST_URI']);
 			$bug_link = str_replace('plugins/Agenda/pages','',$bug_link);
+
+/**
+@emmanuel1979 : UTF-8 was eliminated because in Spanish the errors are displayed with unreadable special characters.
+The bug_id field replacement in the next line.
+Original
+‘bug_link’ => $ bug_link.’view.php? id = ‘. $ result [‘ id ‘],
+And it must be replaced by
+‘bug_link’ => $ bug_link.’view.php? id = ‘. $ result [‘ bug_id ‘],
+
+**/
 			
 			$results[] = array(
 								'id' => $result['id'],
-								'title' => utf8_encode($result['name']).' : '.utf8_encode($result['title']),
+								'title' => $result['name'].' : '.$result['title'],
 								'start' => $date_deb,
 								'end' => $date_fin,
 								'temps_deb' => $temps_deb,
 								'temps_fin' => $temps_fin,
-								'auteur' => utf8_encode($result['realname']),
-								'note' => utf8_encode($result['note']),
-								'description' => utf8_encode($result['description']),
+								'auteur' =>$result['realname'],
+								'note' => $result['note'],
+								'description' => $result['description'],
 								'time_tracking' => $result['time_tracking'],
 								'allDay' => false ,
 								'className' => 'action',
-								'bug_link' => $bug_link.'view.php?id='.$result['id'],
+								'bug_link' => $bug_link.'view.php?id='.$result['bug_id'],
 						);
 		}
 	}
@@ -106,6 +116,7 @@
 	/**
 	 * Listing des dates d'échéances des bugs
 	 */
+
 	$query_dl = $db->query("SELECT mbt.id, mbt.due_date, mbt.summary, mpt.name
 							FROM mantis_bug_table mbt
 							LEFT JOIN mantis_bug_text_table mbug ON (mbug.id = mbt.id)
@@ -117,7 +128,7 @@
 		if ( $result_dl['due_date'] != 1 ) {
 			$results[] = array(
 							'id' => $result_dl['id'],
-							'title' => utf8_encode($result_dl['name']).' :'.utf8_encode($result_dl['summary']),
+							'title' => $result_dl['name'].' :'.$result_dl['summary'],
 							'start' =>  date('Y-m-d H:i:s',$result_dl['due_date']),
 							'echeance' => date('d-m-Y',$result_dl['due_date']),
 							'color' => 'red',
@@ -129,7 +140,7 @@
 	}
 	
 	#Encodage des resultats en JSON pour afficher dans le calendrier
-	echo json_encode($results);
+	 echo json_encode($results);
 	
 	
 	/**
