@@ -11,8 +11,7 @@
 	  
 	 - Basé sur le script de Calendrier "FullCalendar" disponible à l'adresse suivante : http://arshaw.com/fullcalendar/download/
 
-	 Version 0.2.2
-	 © Hennes Hervé - 2013
+	 © Hennes Hervé - 2011-2016
 */
 
 class AgendaPlugin extends MantisPlugin {
@@ -20,10 +19,10 @@ class AgendaPlugin extends MantisPlugin {
 	function register() {
 		$this->name        = 'AgendaPlugin';
 		$this->description = 'Affichage du temps passé sur les bugs dans un calendrier';
-		$this->version     = '0.2.2';
+		$this->version     = '0.3.0-alpha';
 		$this->requires    = array('MantisCore'       => '1.2.0',);
 		$this->author      = 'Hennes Hervé';
-		$this->url         = 'http://www.h-hennes.fr';
+		$this->url         = 'http://www.h-hennes.fr/blog';
 	}
 	
 	function init() {
@@ -31,9 +30,31 @@ class AgendaPlugin extends MantisPlugin {
 	}
 	
 	function agendamenu() {
-		return array('<a href="' . plugin_page('Agenda_page.php') . '">' .lang_get('see_agenda') . '</a>');
+		return array('<a href="' . plugin_page('Agenda_page.php') . '">' .plugin_lang_get('see_agenda') . '</a>');
 	}
-
-	
+        
+        #Recuperation du code d'affichage de la locale pour fullcalendar
+        public static function getFullCalendarLocaleCode( $user_language = null) {
+               
+            switch ( $user_language ) {
+                
+                case 'french':
+                    $code = 'fr';
+                    break;
+                
+                case 'german':
+                    $code = 'de';
+                    break;
+                
+                case 'spanish':
+                    $code = 'es';
+                    break;
+                
+                default:
+                    $code = 'en-gb';
+            }
+            
+            return $code;
+            
+        }	
 }
-?>

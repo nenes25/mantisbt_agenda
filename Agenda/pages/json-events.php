@@ -1,23 +1,17 @@
 <?php
 /**
  *	Plugin Agenda pour Mantis BugTracker :
- *	Version 0.2.1
- *	© Hennes Hervé - 2013
+ *	
+ *	© Hennes Hervé - 2011-2016
  */
-	include('../../../core/constant_inc.php');
-	include('../../../config_inc.php');
-	
-	try {
-		$db = new PDO('mysql:host='.$g_hostname.';dbname='.$g_database_name,$g_db_username,$g_db_password);
-	}
-	catch (Exception $e) {
-		die($e->getMessage());
-	}
+	#require_once( dirname(__FILE__) . '/../../../core.php' );
+	#Dev 
+	require_once( '/var/www/public/mantisbt/mantisbt-1.2.19/core.php' );
 	
 	#Récupération des paramètres de la requêtes
-	$t_user_id= (int)$_GET['t_user_id'];
-	$t_project_id= (int)$_GET['t_project_id'];
-	$t_user_access_level= (int)$_GET['t_user_access_level'];
+	$t_user_id= gpc_get_int('t_user_id');
+	$t_project_id= gpc_get_int('t_project_id');
+	$t_user_access_level= gpc_get_int('t_user_access_level');
 	
 	#initialisation des variables de conditions de requêtes
 	$t_conditions_notes = array();
@@ -59,7 +53,7 @@
 	/**
 	 * Listing des actions sur les bugs
 	 */
-	$query = $db->query('SELECT mbt.time_tracking, mbt.date_submitted, mbtt.note, mbug.description,mbg.summary title, mbg.id bug_id, mbt.id, mpt.name, mut.realname
+	$t_actions = db_query('SELECT mbt.time_tracking, mbt.date_submitted, mbtt.note, mbug.description,mbg.summary title, mbg.id bug_id, mbt.id, mpt.name, mut.realname
 						FROM mantis_bug_table mbg 
 						LEFT JOIN mantis_project_table mpt ON ( mpt.id = mbg.project_id)
 						LEFT JOIN  mantis_bugnote_table mbt ON (mbt.bug_id = mbg.id)
@@ -68,46 +62,36 @@
 						LEFT JOIN mantis_bug_text_table mbug ON (mbug.id = mbt.bug_id)
 						'.$t_conditions_notes_sql);
 			  
-	while ( $result = $query->fetch() ) {
+	while ( $t_result = db_fetch_array($t_actions) ) {
 		
-		if ( $result['id'] != NULL ) {
+		if ( $t_result['id'] != NULL ) {
 		
-			$date_deb = date('Y-m-d H:i:s',$result['date_submitted']);
-			$temps_deb = date('d-m-Y à H:i:s',$result['date_submitted']);
+			$t_date_deb = date('Y-m-d H:i:s',$t_result['date_submitted']);
+			$t_temps_deb = date('d-m-Y à H:i:s',$t_result['date_submitted']);
 			
-			if ( $result['time_tracking'] != 0 ){ 
-				$date_fin = date('Y-m-d H:i:s',mktime(substr($date_deb,11,2),($result['time_tracking']+substr($date_deb,14,2)),0,substr($date_deb,5,2),substr($date_deb,8,2),substr($date_deb,0,4)));
-				$temps_fin = date('d-m-Y à H:i:s',mktime(substr($date_deb,11,2),(substr($date_deb,14,2)-$result['time_tracking']),0,substr($date_deb,5,2),substr($date_deb,8,2),substr($date_deb,0,4)));
+			if ( $t_result['time_tracking'] != 0 ){ 
+				$date_fin = date('Y-m-d H:i:s',mktime(substr($t_date_deb,11,2),($t_result['time_tracking']+substr($t_date_deb,14,2)),0,substr($$t_date_deb,5,2),substr($t_date_deb,8,2),substr($t_date_deb,0,4)));
+				$temps_fin = date('d-m-Y à H:i:s',mktime(substr($t_date_deb,11,2),(substr($t_date_deb,14,2)-$t_result['time_tracking']),0,substr($t_date_deb,5,2),substr($t_date_deb,8,2),substr($t_date_deb,0,4)));
 				
 			}
 			
 			$bug_link = dirname($_SERVER['REQUEST_URI']);
 			$bug_link = str_replace('plugins/Agenda/pages','',$bug_link);
-
-/**
-@emmanuel1979 : UTF-8 was eliminated because in Spanish the errors are displayed with unreadable special characters.
-The bug_id field replacement in the next line.
-Original
-‘bug_link’ => $ bug_link.’view.php? id = ‘. $ result [‘ id ‘],
-And it must be replaced by
-‘bug_link’ => $ bug_link.’view.php? id = ‘. $ result [‘ bug_id ‘],
-
-**/
 			
-			$results[] = array(
-								'id' => $result['id'],
-								'title' => $result['name'].' : '.$result['title'],
-								'start' => $date_deb,
+			$t_results[] = array(
+								'id' => $t_result['id'],
+								'title' => $t_result['name'].' : '.$t_result['title'],
+								'start' => $t_date_deb,
 								'end' => $date_fin,
-								'temps_deb' => $temps_deb,
+								'temps_deb' => $t_temps_deb,
 								'temps_fin' => $temps_fin,
-								'auteur' =>$result['realname'],
-								'note' => $result['note'],
-								'description' => $result['description'],
-								'time_tracking' => $result['time_tracking'],
+								'auteur' =>$t_result['realname'],
+								'note' => $t_result['note'],
+								'description' => $t_result['description'],
+								'time_tracking' => $t_result['time_tracking'],
 								'allDay' => false ,
 								'className' => 'action',
-								'bug_link' => $bug_link.'view.php?id='.$result['bug_id'],
+								'bug_link' => $bug_link.'view.php?id='.$t_result['bug_id'],
 						);
 		}
 	}
@@ -117,20 +101,20 @@ And it must be replaced by
 	 * Listing des dates d'échéances des bugs
 	 */
 
-	$query_dl = $db->query("SELECT mbt.id, mbt.due_date, mbt.summary, mpt.name
+	$t_query_dl = db_query("SELECT mbt.id, mbt.due_date, mbt.summary, mpt.name
 							FROM mantis_bug_table mbt
 							LEFT JOIN mantis_bug_text_table mbug ON (mbug.id = mbt.id)
 							LEFT JOIN mantis_project_table mpt ON ( mpt.id = mbt.project_id)
 							".$t_conditions_due_date_sql);
 							
-	while ( $result_dl = $query_dl->fetch() ) {
+	while ( $t_result_dl = db_fetch_array($t_query_dl) ) {
 
-		if ( $result_dl['due_date'] != 1 ) {
-			$results[] = array(
-							'id' => $result_dl['id'],
-							'title' => $result_dl['name'].' :'.$result_dl['summary'],
-							'start' =>  date('Y-m-d H:i:s',$result_dl['due_date']),
-							'echeance' => date('d-m-Y',$result_dl['due_date']),
+		if ( $t_result_dl['due_date'] != 1 ) {
+			$t_results[] = array(
+							'id' => $t_result_dl['id'],
+							'title' => $t_result_dl['name'].' :'.$t_result_dl['summary'],
+							'start' =>  date('Y-m-d H:i:s',$t_result_dl['due_date']),
+							'echeance' => date('d-m-Y',$t_result_dl['due_date']),
 							'color' => 'red',
 							'allDay' => true,
 							'className' => 'due_date'
@@ -140,7 +124,7 @@ And it must be replaced by
 	}
 	
 	#Encodage des resultats en JSON pour afficher dans le calendrier
-	 echo json_encode($results);
+	 echo json_encode($t_results);
 	
 	
 	/**

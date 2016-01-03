@@ -18,3 +18,7 @@ Plugin MantisAgenda
 2015-12-21 : V 0.2.2 :
  - Correction affichage des bugs, merci à emmanuel1979
  - Suppressions des dernières traductions en dur 
+2016 : V 0.3.0 :
+ - Optimisation code
+ - Mise à jour de fullCalendar ( dépendance gérée via bower)
+ - Ajout de traduction de textes dans le javascript

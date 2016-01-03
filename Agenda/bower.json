@@ -1,0 +1,27 @@
+{
+  "name": "MantisBt Agenda Plugin",
+  "homepage": "https://github.com/nenes25/mantisbt_agenda",
+  "description": "Agenda Plugin for mantisbt",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "mantisbt",
+    "agenda",
+    "plugin"
+  ],
+  "authors": [
+    "Hennes Hervé"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fullcalendar": "~2.5.0"
+  }
+}

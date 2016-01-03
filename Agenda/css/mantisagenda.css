@@ -1,7 +1,7 @@
 /**
  *	Plugin Agenda pour Mantis BugTracker :
- *	Version 0.2.0
- *	© Hennes Hervé - 2013
+ *	
+ *	Â© Hennes HervÃ© - 2011-2016
  */
 #loading { position: absolute; top: 5px; right: 5px; }
 #calendar { width: 900px; margin: 0 auto; }
@@ -19,3 +19,4 @@
 #event_details .p_event_details_header { margin:5px;}
 #event_details_description_bug { display:none;}
 #event_details_content h2 {margin-top:0;}
+#plugin-agenda-warning {text-align:center;background-color:#ffff99;padding:10px;width:80%;border:1px solid #000;margin:auto;}

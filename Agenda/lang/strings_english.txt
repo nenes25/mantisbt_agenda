@@ -1,4 +1,14 @@
 <?php
-$s_see_agenda = "Voir agenda";
-$s_loading_text = "Loading";
-$s_close_detail = "Close details";
+#Page
+$s_plugin_Agenda_see_agenda = "See agenda";
+$s_plugin_Agenda_loading_text = "Loading";
+$s_plugin_Agenda_close_details = "Close details";
+$s_plugin_Agenda_configuration_error = "<strong>Configuration error :</strong> <br /> you need to configure the folowing vars :";
+#Js popup
+$s_plugin_Agenda_action_start = "Action start";
+$s_plugin_Agenda_action_end = "Action end";
+$s_plugin_Agenda_duration = "Duration";
+$s_plugin_Agenda_note_details = "Note details";
+$s_plugin_Agenda_author = "Author";
+$s_plugin_Agenda_see_bug_description = "see bug description";
+$s_plugin_Agenda_due_date = "Due Date";
