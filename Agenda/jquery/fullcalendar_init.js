@@ -24,27 +24,27 @@ $(document).ready(function() {
 				day: 'dddd d/M'
 			},
 			
-			//Premier jour de la semaine : Lundi
+			//Premier jour de la seMayone : Lundi
 			firstDay: 1,
 			//Pas besoin d'afficher les weeks ends
 			weekends : true,
 			//Affichage différent selon les mois
 			weekMode: 'variable',
 			
-			//Configuration des variables Jours et mois en FR
-			monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'],
-			monthNamesShort: ['Jan','Fev','Mar','Avr','Mai','Jun','Jul','Aou','Sep','Oct','Nov','Dec'],
-			dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-			dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+			//@emmanuel1979: Variable configuration Days and months in SPANISH
+			monthNames: ['Enero','Febrero','Martes','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+			monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
 			buttonText: {
 				prev: '&nbsp;&#9668;&nbsp;',
 				next: '&nbsp;&#9658;&nbsp;',
 				prevYear: '&nbsp;&lt;&lt;&nbsp;',
 				nextYear: '&nbsp;&gt;&gt;&nbsp;',
-				today: 'Aujourd\'hui',
-				month: 'Mois',
-				week: 'Semaine',
-				day: 'Jour'
+				today: 'Hoy',
+				month: 'Mes',
+				week: 'Semana',
+				day: 'Dia'
 			},
 			
 			events: "plugins/Agenda/pages/json-events.php?t_user_id="+t_user_id+'&t_project_id='+t_project_id+'&t_user_access_level='+t_user_access_level,
@@ -61,18 +61,19 @@ $(document).ready(function() {
 				if ( calEvent.className == 'action' ) {
 				
 					//Contenu html du block
-					var content = '<h2>'+calEvent.title+'</h2><p>Début action : '+calEvent.temps_deb+'<br />Durée : '+calEvent.time_tracking+' min<br />'
-					+'Fin de l\'action : '+calEvent.temps_fin+'</p>'
-					+'<b>Détails de la note :</b>'+calEvent.note+'<br />'
-					+'Auteur : '+calEvent.auteur+'<br />'
-					+'<a href="'+calEvent.bug_link+'" id="event_details_description_bug_show">Voir le descriptif du bug </a><br /><div id="event_details_description_bug">'+calEvent.description+'</div>';	
+					//@emmanuel1979: The text was translated into Spanish
+					var content = '<h2>'+calEvent.title+'</h2><p>Fecha Inicio : '+calEvent.temps_deb+'<br />Duración : '+calEvent.time_tracking+' min<br />'
+					+'Fecha Fin : '+calEvent.temps_fin+'</p>'
+					+'<b>Detalle de la nota :</b>'+calEvent.note+'<br />'
+					+'Autor : '+calEvent.auteur+'<br />'
+					+'<a href="'+calEvent.bug_link+'" id="event_details_description_bug_show">Ver Incidencias reportada </a><br /><div id="event_details_description_bug">'+calEvent.description+'</div>';	
 				
 				}
 				//Date d'échéances
 				else if ( calEvent.className == 'due_date') {
 					var content = '<h2>'+calEvent.title+'</h2>'
-					+'Date d\'objectif de correction du bug: <strong> '+calEvent.echeance+'</strong></p>';
-					+'<p><a href="'+calEvent.bug_link+'" id="event_details_description_bug_show">Voir le descriptif du bug </a></p>';
+					+'Fecha límite : <strong> '+calEvent.echeance+'</strong></p>';
+					+'<p><a href="'+calEvent.bug_link+'" id="event_details_description_bug_show">Ver Incidencias reportada </a></p>';
 				}
 				//Rien
 				else {}
@@ -87,7 +88,7 @@ $(document).ready(function() {
 			},
 			
 			/*
-				Au survol on change l'apparence du bloc pour pouvoir tout consulter en mode semaine ou Jour
+				Au survol on change l'apparence du bloc pour pouvoir tout consulter en mode seMayone ou Jour
 				On stocke les hauteurs et largeurs initiales dans les propriétés min-width et min-height pour pouvoir les réutiliser avec l'event MouseOut
 			*/
 			eventMouseover: function( event, jsEvent, view ) {
