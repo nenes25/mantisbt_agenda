@@ -19,7 +19,7 @@ class AgendaPlugin extends MantisPlugin {
 	function register() {
 		$this->name        = 'AgendaPlugin';
 		$this->description = 'Affichage du temps passé sur les bugs dans un calendrier';
-		$this->version     = '0.3.0-alpha';
+		$this->version     = '0.3.0';
 		$this->requires    = array('MantisCore'       => '1.2.0',);
 		$this->author      = 'Hennes Hervé';
 		$this->url         = 'http://www.h-hennes.fr/blog';
