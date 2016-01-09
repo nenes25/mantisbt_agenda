@@ -17,4 +17,3 @@ Si celui-ci n'est pas installé sur votre serveur, vous pouvez télécharger le 
 
 Pour plus de détails sur ce module vous pouvez consulter la page suivante :
 (FR) http://www.h-hennes.fr/blog/plugin-suivi-de-temps-pour-mantis-bugtracker/
-
