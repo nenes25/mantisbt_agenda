@@ -16,5 +16,5 @@ Pour cela il faut éxécuter la commande "bower install" dans le dossier d'insta
 Si celui-ci n'est pas installé sur votre serveur, vous pouvez télécharger le plugin complet : <a href="http://www.h-hennes.fr/blog/wp-content/uploads/modules/MantisBtAgenda-lastest.zip" target="_blank">ici</a>
 
 Pour plus de détails sur ce module vous pouvez consulter la page suivante :
-(FR) http://www.h-hennes.fr/blog/2013/04/29/creation-dun-plugin-de-suivi-de-temps-pour-mantis-bugtracker-nouvelle-version/
+(FR) http://www.h-hennes.fr/blog/plugin-suivi-de-temps-pour-mantis-bugtracker/
 
