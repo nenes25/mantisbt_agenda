@@ -5,10 +5,10 @@ $s_plugin_Agenda_loading_text = "Chargement en cours";
 $s_plugin_Agenda_close_details = "Fermer le détail";
 $s_plugin_Agenda_configuration_error = "Erreur de configuration : <br /> Merci de renseigner les éléments suivants dans votre configuration";
 #Js popup
-$s_plugin_Agenda_action_start = "Action start";
-$s_plugin_Agenda_action_end = "Action end";
-$s_plugin_Agenda_duration = "Duration";
-$s_plugin_Agenda_note_details = "Note details";
-$s_plugin_Agenda_author = "Author";
-$s_plugin_Agenda_see_bug_description = "see bug description";
-$s_plugin_Agenda_due_date = "Due Date";
+$s_plugin_Agenda_action_start = "Debut action";
+$s_plugin_Agenda_action_end = "Fin action";
+$s_plugin_Agenda_duration = "Durée";
+$s_plugin_Agenda_note_details = "Détails de la note";
+$s_plugin_Agenda_author = "Auteur";
+$s_plugin_Agenda_see_bug_description = "Voir la description";
+$s_plugin_Agenda_due_date = "Date d'échéance";

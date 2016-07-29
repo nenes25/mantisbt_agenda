@@ -22,3 +22,6 @@ Plugin MantisAgenda
  - Optimisation code
  - Mise à jour de fullCalendar ( dépendance gérée via bower)
  - Ajout de traduction de textes dans le javascript
+2016-07-29 : V 0.4.0 :
+ - Compatibilité avec mantis 1.3.x
+ - Suppression des codes javascript inline

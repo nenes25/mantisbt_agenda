@@ -20,3 +20,8 @@
 #event_details_description_bug { display:none;}
 #event_details_content h2 {margin-top:0;}
 #plugin-agenda-warning {text-align:center;background-color:#ffff99;padding:10px;width:80%;border:1px solid #000;margin:auto;}
+
+.fc-event-container .due_date {
+    background-color: #FF0000;
+    border-color:#CC0000;
+}
