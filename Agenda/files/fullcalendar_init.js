@@ -4,6 +4,17 @@ $(document).ready(function () {
     var t_user_id = $('#t_user_id').val();
     var t_project_id = $('#t_project_id').val();
     var t_user_access_level = $('#t_user_access_level').val();
+    
+    //Gestion des traduction (compatible 1.3 )
+    var mantisAgendaTranslate = {
+     actionStart : $('#mantis_agenda_translate_actionStart').val(),
+     actionEnd : $('#mantis_agenda_translate_actionEnd').val(),
+     duration : $('#mantis_agenda_translate_duration').val(), 
+     noteDetails : $('#mantis_agenda_translate_noteDetails').val(),
+     author: $('#mantis_agenda_translate_author').val(),
+     seeBugDescription: $('#mantis_agenda_translate_seeBugDescription').val(),
+     dueDate: $('#mantis_agenda_translate_dueDate').val()
+    };   
 
     $('#calendar').fullCalendar({
         editable: true,
@@ -14,7 +25,7 @@ $(document).ready(function () {
             right: 'month,agendaWeek,agendaDay'
         },
         events: {
-            url: "plugins/Agenda/pages/json-events.php?t_user_id=" + t_user_id + '&t_project_id=' + t_project_id + '&t_user_access_level=' + t_user_access_level,
+            url: "plugin.php?page=Agenda/json-events.php&t_user_id=" + t_user_id + '&t_project_id=' + t_project_id + '&t_user_access_level=' + t_user_access_level,
             cache: false
         },
         /*

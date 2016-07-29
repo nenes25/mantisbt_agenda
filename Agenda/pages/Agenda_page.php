@@ -1,22 +1,37 @@
 <?php
-/*
-	Plugin Agenda pour Mantis BugTracker :
-	  - Page d'affichage du calendrier
+# MantisBT - A PHP based bugtracking system
+# MantisBT is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# MantisBT is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
 
-	 © Hennes Hervé - 2011-2016
-*/
+#
+#  Agenda Plugin for Mantis BugTracker :
+#  - Display time passed on bug in a calendar
+#  © Hennes Hervé <contact@h-hennes.fr>
+#    2015-2016
+#  http://www.h-hennes.fr/blog/
+
 html_page_top1( plugin_lang_get( 'see_agenda' ) );
 html_page_top2();
 print_summary_menu( 'summary_page.php' );
 print_summary_submenu(); 
 ?>
 <!-- Jquery Resources -->
-<script type='text/javascript' src='plugins/Agenda/bower_components/moment/min/moment.min.js'></script>
-<script type='text/javascript' src='plugins/Agenda/bower_components/jquery/dist/jquery.min.js'></script>
+<script type='text/javascript' src='<?php echo plugin_file('bower/moment/min/moment.min.js');?>'></script>
+<!--<script type='text/javascript' src='plugins/Agenda/bower_components/jquery/dist/jquery.min.js'></script>-->
 <!-- FullCalendar Resources -->
-<link rel='stylesheet' type='text/css' href='plugins/Agenda/bower_components/fullcalendar/dist/fullcalendar.css' />
-<link rel='stylesheet' type='text/css' href='plugins/Agenda/bower_components/fullcalendar/dist/fullcalendar.print.css' media='print' />
-<script type='text/javascript' src='plugins/Agenda/bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+<link rel='stylesheet' type='text/css' href='<?php echo plugin_file('bower/fullcalendar/dist/fullcalendar.css');?>' />
+<link rel='stylesheet' type='text/css' href='<?php echo plugin_file('bower/fullcalendar/dist/fullcalendar.print.css');?>' media='print' />
+<script type='text/javascript' src='<?php echo plugin_file('bower/fullcalendar/dist/fullcalendar.min.js');?>'></script>
 <?php
  // Récupération du projet et de l'utilisateur courant et de ses droits
  $t_user_id = auth_get_current_user_id();
@@ -27,26 +42,25 @@ print_summary_submenu();
 $t_pref = user_pref_get( $t_user_id );
 $codeLang = AgendaPlugin::getFullCalendarLocaleCode($t_pref->language);
 ?>
-<script type='text/javascript' src='plugins/Agenda/bower_components/fullcalendar/dist/lang/<?php echo $codeLang;?>.js'></script>
+<script type='text/javascript' src='<?php echo plugin_file('bower/fullcalendar/dist/lang/'.$codeLang.'.js');?>'></script>
 <!-- MantisAgenda Resources -->
-<script type='text/javascript'>
- var mantisAgendaTranslate = {
-     actionStart : '<?php echo plugin_lang_get('action_start');?>',
-     actionEnd : '<?php echo plugin_lang_get('action_end');?>',
-     duration : '<?php echo plugin_lang_get('duration');?>', 
-     noteDetails : '<?php echo plugin_lang_get('note_details');?>',
-     author: '<?php echo plugin_lang_get('author');?>',
-     seeBugDescription: '<?php echo plugin_lang_get('see_bug_description');?>',
-     dueDate: '<?php echo plugin_lang_get('due_date');?>'
- };   
-</script>
-<script type='text/javascript' src='plugins/Agenda/js/fullcalendar_init.js'></script>
-<link rel='stylesheet' type='text/css' href='plugins/Agenda/css/mantisagenda.css' />
+
+<script type='text/javascript' src='<?php echo plugin_file('fullcalendar_init.js'); ?>'></script>
+<link rel='stylesheet' type='text/css' href='<?php echo plugin_file('mantisagenda.css'); ?>' />
 
 <body>
 <input type="hidden" name="t_project_id" id="t_project_id" value="<?php echo $t_project_id; ?>" />
 <input type="hidden" name="t_user_id" id="t_user_id" value="<?php echo $t_user_id; ?>" />
 <input type="hidden" name="t_user_access_level" id="t_user_access_level" value="<?php echo $t_user_access_level; ?>" />
+
+<?php #Gestion des traductions mantisbt 1.3 ?>
+<input type="hidden" id="mantis_agenda_translate_actionStart" value="<?php echo plugin_lang_get('action_start');?>" />
+<input type="hidden" id="mantis_agenda_translate_actionEnd" value="<?php echo plugin_lang_get('action_end');?>" />
+<input type="hidden" id="mantis_agenda_translate_duration" value="<?php echo plugin_lang_get('duration');?>" />
+<input type="hidden" id="mantis_agenda_translate_noteDetails" value="<?php echo plugin_lang_get('note_details');?>" />
+<input type="hidden" id="mantis_agenda_translate_author" value="<?php echo plugin_lang_get('author');?>" />
+<input type="hidden" id="mantis_agenda_translate_seeBugDescription" value="<?php echo plugin_lang_get('see_bug_description');?>" />
+<input type="hidden" id="mantis_agenda_translate_dueDate" value="<?php echo plugin_lang_get('due_date');?>" />
 
 <?php #Affichage d'un message d'erreur si les configurations nécessaires ne sont pas actives ?>
 <?php if ( $g_time_tracking_enabled != ON || $g_due_date_update_threshold != DEVELOPER || $g_due_date_view_threshold != REPORTER ): ?>
