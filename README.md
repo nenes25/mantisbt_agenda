@@ -17,3 +17,6 @@ Si celui-ci n'est pas installé sur votre serveur, vous pouvez télécharger le 
 
 Pour plus de détails sur ce module vous pouvez consulter la page suivante :
 (FR) http://www.h-hennes.fr/blog/plugin-suivi-de-temps-pour-mantis-bugtracker/
+
+Ce plugin est compatible avec mantis 1.3.x  
+Une version compatible avec les versions 1.2.x est disponible sur la branche 1.2.x
