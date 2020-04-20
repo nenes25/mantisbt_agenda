@@ -22,50 +22,74 @@
 #   $g_due_date_view_threshold = REPORTER;	  
 #  
 #  © Hennes Hervé <contact@h-hennes.fr>
-#    2011-2016
+#    2011-2020
 #  http://www.h-hennes.fr/blog/
 
-class AgendaPlugin extends MantisPlugin {
+class AgendaPlugin extends MantisPlugin
+{
 
-	function register() {
-		$this->name        = 'AgendaPlugin';
-		$this->description = 'Affichage du temps passé sur les bugs dans un calendrier';
-		$this->version     = '0.4.0';
-		$this->requires    = array('MantisCore'       => '1.3.0',);
-		$this->author      = 'Hennes Hervé';
-		$this->url         = 'http://www.h-hennes.fr/blog';
-	}
-	
-	function init() {
-		plugin_event_hook( 'EVENT_MENU_MAIN', 'agendamenu' );
-	}
-	
-	function agendamenu() {
-		return array('<a href="' . plugin_page('Agenda_page.php') . '">' .plugin_lang_get('see_agenda') . '</a>');
-	}
-        
-        #Recuperation du code d'affichage de la locale pour fullcalendar
-        public static function getFullCalendarLocaleCode( $user_language = null) {
-               
-            switch ( $user_language ) {
-                
-                case 'french':
-                    $code = 'fr';
-                    break;
-                
-                case 'german':
-                    $code = 'de';
-                    break;
-                
-                case 'spanish':
-                    $code = 'es';
-                    break;
-                
-                default:
-                    $code = 'en-gb';
-            }
-            
-            return $code;
-            
-        }	
+    function register()
+    {
+        $this->name = plugin_lang_get('title');;
+        $this->description = plugin_lang_get('description');
+        $this->version = '0.5.0';
+        $this->requires = array('MantisCore' => '2.0.0');
+        $this->author = 'Hennes Hervé';
+        $this->url = 'https://github.com/nenes25/mantisbt_agenda';
     }
+
+    /**
+     * Initialisation du module
+     */
+    function init()
+    {
+        plugin_event_hook('EVENT_MENU_MAIN', 'menu_main');
+    }
+
+    /**
+     * Affichage du menu
+     * @return array[]|string[]
+     */
+    function menu_main()
+    {
+        return array(
+            array(
+                'title' => plugin_lang_get('menu_title'),
+                'access_level' => ADMINISTRATOR,
+                'url' => plugin_page('Agenda_page'),
+                'icon' => 'fa-calendar'
+            ),
+        );
+        return array('<a href="' . plugin_page('Agenda_page.php') . '">' . plugin_lang_get('see_agenda') . '</a>');
+    }
+
+    /**
+     * Recuperation du code d'affichage de la locale pour fullcalendar
+     * @param null $user_language
+     * @return string
+     */
+    public static function getFullCalendarLocaleCode($user_language = null)
+    {
+
+        switch ($user_language) {
+
+            case 'french':
+                $code = 'fr';
+                break;
+
+            case 'german':
+                $code = 'de';
+                break;
+
+            case 'spanish':
+                $code = 'es';
+                break;
+
+            default:
+                $code = 'en-gb';
+        }
+
+        return $code;
+
+    }
+}

@@ -1,9 +1,14 @@
 <?php
+#Plugin
+$s_plugin_Agenda_title = 'AgendaPlugin';
+$s_plugin_Agenda_description = 'Affichage du temps passé sur les bugs dans un calendrier';
+$s_plugin_Agenda_menu_title = 'Agenda';
+
 #Page
 $s_plugin_Agenda_see_agenda = "Voir agenda";
 $s_plugin_Agenda_loading_text = "Chargement en cours";
 $s_plugin_Agenda_close_details = "Fermer le détail";
-$s_plugin_Agenda_configuration_error = "Erreur de configuration : <br /> Merci de renseigner les éléments suivants dans votre configuration";
+$s_plugin_Agenda_configuration_error = "Erreur de configuration : Merci de renseigner les éléments suivants dans votre configuration";
 #Js popup
 $s_plugin_Agenda_action_start = "Debut action";
 $s_plugin_Agenda_action_end = "Fin action";

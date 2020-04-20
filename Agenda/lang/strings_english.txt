@@ -1,4 +1,9 @@
 <?php
+#Plugin
+$s_plugin_Agenda_title = 'AgendaPlugin';
+$s_plugin_Agenda_description = 'Display time on a calendar';
+$s_plugin_Agenda_menu_title = 'Agenda';
+
 #Page
 $s_plugin_Agenda_see_agenda = "See agenda";
 $s_plugin_Agenda_loading_text = "Loading";

@@ -1,25 +1,21 @@
 /**
  *	Plugin Agenda pour Mantis BugTracker :
  *	
- *	© Hennes Hervé - 2011-2016
+ *	© Hennes Hervé - 2011-2020
  */
 #loading { position: absolute; top: 5px; right: 5px; }
 #calendar { width: 900px; margin: 0 auto; }
 #event_details {
-	border:1px solid #000;
 	position:absolute;
 	top:200px;
 	left:600px;
 	width:600px;
 	display:none;
 	z-index:30;
-	background-color:#E8E8E8;
-	border-radius:5px;
 }
 #event_details .p_event_details_header { margin:5px;}
 #event_details_description_bug { display:none;}
 #event_details_content h2 {margin-top:0;}
-#plugin-agenda-warning {text-align:center;background-color:#ffff99;padding:10px;width:80%;border:1px solid #000;margin:auto;}
 
 .fc-event-container .due_date {
     background-color: #FF0000;
